@@ -10,12 +10,12 @@ var BARCHART_HEIGHT = 100;
 var TEXT_Y = 260;
 var GAP = 90;
 
-function renderCloud (ctx, x, y, color){
+function renderCloud (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 }
 
-window.renderStatistics = function (ctx, names, times) {
+window.renderStatistics = function (ctx) {
   //  Добавляем облако и его тень
   renderCloud(ctx, 110, 20, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, 100, 10, '#fff');
@@ -26,7 +26,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60);
 
-  //Гистограмма 1-ого участника
+  // Гистограмма 1-ого участника
   ctx.fillStyle = '#000';
   ctx.fillText('Вы', BARCHART_X + BARCHART_X * 0, TEXT_Y);
   ctx.fillStyle = 'red';
@@ -49,7 +49,6 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Игорь', BARCHART_X + GAP * 3, TEXT_Y);
   ctx.fillStyle = 'grey';
   ctx.fillRect(BARCHART_X + GAP * 3, BARCHART_Y, BARCHART_WIDTH, BARCHART_HEIGHT);
-
-  };
+};
 
 
