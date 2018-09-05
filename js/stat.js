@@ -10,7 +10,7 @@ var BARCHART_HEIGHT = 100;
 var TEXT_Y = 260;
 var GAP = 90;
 
-function renderCloud (ctx, x, y, color) {
+function renderCloud(ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 }
