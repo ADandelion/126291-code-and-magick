@@ -4,10 +4,11 @@
 var CLOUD_WIDTH = 420;
 var CLOUD_HEIGHT = 270;
 var BARCHART_X = 140;
-var BARCHART_Y = 140;
+var BARCHART_Y = 90;
 var BARCHART_WIDTH = 40;
-var BARCHART_HEIGHT = 100;
+var BARCHART_HEIGHT = 150;
 var TEXT_Y = 260;
+var SCORE_Y = 80;
 var GAP = 90;
 
 function renderCloud(ctx, x, y, color) {
@@ -15,7 +16,19 @@ function renderCloud(ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 }
 
-window.renderStatistics = function (ctx) {
+var getMaxElement = function(arr) {
+  var maxElement = arr[0];
+
+  for (var i = 1; i<arr.length; i++) {
+    if (arr[i] > maxElement){
+      maxElement = arr[i];
+    }
+  }
+
+  return maxElement;
+};
+
+window.renderStatistics = function (ctx, players, times) {
   //  Добавляем облако и его тень
   renderCloud(ctx, 110, 20, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, 100, 10, '#fff');
@@ -26,29 +39,16 @@ window.renderStatistics = function (ctx) {
   ctx.fillText('Ура вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60);
 
-  // Гистограмма 1-ого участника
-  ctx.fillStyle = '#000';
-  ctx.fillText('Вы', BARCHART_X + BARCHART_X * 0, TEXT_Y);
-  ctx.fillStyle = 'red';
-  ctx.fillRect(BARCHART_X + BARCHART_X * 0, BARCHART_Y, BARCHART_WIDTH, BARCHART_HEIGHT);
+  var maxTime = Math.ceil(getMaxElement(times));
 
-  //  Гистограмма 2-ого участника
-  ctx.fillStyle = '#000';
-  ctx.fillText('Кекс', BARCHART_X + GAP * 1, TEXT_Y);
-  ctx.fillStyle = 'green';
-  ctx.fillRect(BARCHART_X + GAP * 1, BARCHART_Y, BARCHART_WIDTH, BARCHART_HEIGHT);
+  ctx.fillStyle.players[0] = 'rgba(255, 0, 0, 1)';
 
-  //  Гистограмма 3-ого участника
-  ctx.fillStyle = '#000';
-  ctx.fillText('Катя', BARCHART_X + GAP * 2, TEXT_Y);
-  ctx.fillStyle = 'blue';
-  ctx.fillRect(BARCHART_X + GAP * 2, BARCHART_Y, BARCHART_WIDTH, BARCHART_HEIGHT);
-
-  //  Гистограмма 4-ого участника
-  ctx.fillStyle = '#000';
-  ctx.fillText('Игорь', BARCHART_X + GAP * 3, TEXT_Y);
-  ctx.fillStyle = 'grey';
-  ctx.fillRect(BARCHART_X + GAP * 3, BARCHART_Y, BARCHART_WIDTH, BARCHART_HEIGHT);
+  for (var i = 0; i < players.length; i++) {
+    ctx.fillStyle = '#000';
+    ctx.fillText(players[i], BARCHART_X + GAP * i, TEXT_Y);
+    ctx.fillText(Math.ceil(times[i]), BARCHART_X + GAP * i, SCORE_Y);
+    ctx.fillStyle = 'rgb(0, 0, 255)';
+    ctx.fillRect(BARCHART_X + GAP * i, BARCHART_Y, BARCHART_WIDTH, (BARCHART_HEIGHT * times[i]) / maxTime);
+  }
 };
-
 
