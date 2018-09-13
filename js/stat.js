@@ -28,11 +28,11 @@ var getMaxElement = function (arr) {
 
 
 // Случайное целое число для цвета гистограммы
-var randomInteger = function(min, max) {
+var randomInteger = function (min, max) {
   var rand = min - 0.5 + Math.random() * (max - min + 1);
   rand = Math.round(rand);
   return rand;
-}
+};
 
 
 window.renderStatistics = function (ctx, players, times) {
@@ -53,18 +53,17 @@ window.renderStatistics = function (ctx, players, times) {
   for (var i = 0; i < players.length; i++) {
     ctx.fillStyle = '#000';
     ctx.fillText(players[i], BARCHART_X + GAP * i, TEXT_Y);
-    ctx.fillText(Math.ceil(times[i]), BARCHART_X + GAP * i,  (SCORE_Y / times[i]) * maxTime);
+    ctx.fillText(Math.ceil(times[i]), BARCHART_X + GAP * i, (SCORE_Y / times[i]) * maxTime);
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else if (players[i] == 'Кекс') {
+    } else if (players[i] === 'Кекс') {
       ctx.fillStyle = 'rgb('+ randomColor +', 100, 255)';
-    } else if (players[i] == 'Игорь') {
+    } else if (players[i] === 'Игорь') {
       ctx.fillStyle = 'rgb(50, '+ randomColor +', 255)';
     } else if (players[i] === 'Катя') {
       ctx.fillStyle = 'rgb('+ randomColor +', 0, 255)';
     }
     ctx.fillRect(BARCHART_X + GAP * i, BARCHART_Y, BARCHART_WIDTH, (BARCHART_HEIGHT * times[i]) / maxTime);
-    console.log(Math.round(times[i]));
   }
 };
 
