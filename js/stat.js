@@ -57,11 +57,11 @@ window.renderStatistics = function (ctx, players, times) {
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else if (players[i] === 'Кекс') {
-      ctx.fillStyle = 'rgb('+ randomColor +', 100, 255)';
+      ctx.fillStyle = 'rgb(' + randomColor + ', 100, 255)';
     } else if (players[i] === 'Игорь') {
-      ctx.fillStyle = 'rgb(50, '+ randomColor +', 255)';
+      ctx.fillStyle = 'rgb(50, ' + randomColor + ', 255)';
     } else if (players[i] === 'Катя') {
-      ctx.fillStyle = 'rgb('+ randomColor +', 0, 255)';
+      ctx.fillStyle = 'rgb(' + randomColor + ', 0, 255)';
     }
     ctx.fillRect(BARCHART_X + GAP * i, BARCHART_Y, BARCHART_WIDTH, (BARCHART_HEIGHT * times[i]) / maxTime);
   }
