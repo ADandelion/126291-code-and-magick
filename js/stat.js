@@ -47,14 +47,13 @@ window.renderStatistics = function (ctx, players, times) {
   ctx.fillText('Список результатов:', 120, 60);
 
   var maxTime = Math.floor(getMaxElement(times));
-  var randomColor = randomInteger(1, 255);
 
   //  Рисуем гистограмму для каждого игрка
   for (var i = 0; i < players.length; i++) {
     ctx.fillStyle = '#000';
     ctx.fillText(players[i], BARCHART_X + GAP * i, TEXT_Y);
     ctx.fillText(Math.ceil(times[i]), BARCHART_X + GAP * i, (BARCHART_Y + (BARCHART_HEIGHT * times[i]) / maxTime) - SCORE_Y);
-    ctx.fillStyle = 'rgba(0, ' + randomColor + ', 255)';
+    ctx.fillStyle = 'rgba(0, ' + randomInteger(1, 255) + ', 255, 1)';
 
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
