@@ -53,7 +53,7 @@ window.renderStatistics = function (ctx, players, times) {
     ctx.fillStyle = '#000';
     ctx.fillText(players[i], BARCHART_X + GAP * i, TEXT_Y);
     ctx.fillText(Math.ceil(times[i]), BARCHART_X + GAP * i, (BARCHART_Y + (BARCHART_HEIGHT * times[i]) / maxTime) - SCORE_Y);
-    ctx.fillStyle = 'rgba(0, ' + randomInteger(1, 255) + ', 255, 1)';
+    ctx.fillStyle = 'rgb(0, 0, ' + randomInteger(1, 255) + ')';
 
     if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
