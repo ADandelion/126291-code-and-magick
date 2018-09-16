@@ -49,10 +49,10 @@ var renderWizards = function (wizard) {
   return wizardElement;
 };
 
- // В процессе создания функции
+// В процессе создания функции
 var fragment = document.createDocumentFragment();
 for (var i = 0; i < wizards.length; i++) {
-fragment.appendChild(renderWizards(wizards[i]));
+  fragment.appendChild(renderWizards(wizards[i]));
 }
 similarListElement.appendChild(fragment);
 
