@@ -24,12 +24,12 @@ var getRandomElement = function (elements) {
 var getWizard = function (fn) {
   for (var i = 0; i < 4; i++) {
     wizards.push({
-        name: fn(WIZARD_NAMES) + ' ' + fn(WIZARD_SURNAME),
-        coatColor: fn(COAT_COLOR),
-        eyesColor: fn(EYES_COLOR)
+      name: fn(WIZARD_NAMES) + ' ' + fn(WIZARD_SURNAME),
+      coatColor: fn(COAT_COLOR),
+      eyesColor: fn(EYES_COLOR)
     });
   }
-  return wizards
+  return wizards;
 };
 getWizard(getRandomElement);
 
@@ -45,7 +45,7 @@ var renderWizard = function (wizard) {
 };
 
 // Добавляем магов
-var getWizards = function (wizards) {
+var getWizards = function (addWizards) {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < wizards.length; i++) {
     fragment.appendChild(renderWizard(wizards[i]));
