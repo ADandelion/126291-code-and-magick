@@ -47,8 +47,8 @@ var renderWizard = function (wizard) {
 // Добавляем магов
 var getWizards = function (addWizards) {
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizard(wizards[i]));
+  for (var i = 0; i < addWizards.length; i++) {
+    fragment.appendChild(renderWizard(addWizards[i]));
   }
   similarListElement.appendChild(fragment);
 };
