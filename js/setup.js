@@ -13,6 +13,7 @@ var ENTER_KEYCODE = 13;
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
+
 // Случайно выбираем значение из массива
 var getRandomElement = function (elements) {
   var rand = Math.floor(Math.random() * elements.length);
@@ -58,19 +59,18 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 
-
-var onPopupEscPress = function(evt) {
-  if (evt.keyCode === 27) {
-    closePopup();
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopupHandler();
   }
 };
 
-var openPopupHandler = function() {
+var openPopupHandler = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
-var closePopupHandler = function() {
+var closePopupHandler = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
@@ -81,34 +81,34 @@ var setupCoat = setupWizard.querySelector('.wizard-coat');
 var setupFireball = document.querySelector('.setup-fireball-wrap');
 
 // Хэндлеры  для  настроки цвета одежды, глаз мага и фаербола
- setupCoat.addEventListener('click', function() {
+setupCoat.addEventListener('click', function() {
   setupCoat.style.fill = getRandomElement(COAT_COLOR);
 });
 
-setupEye.addEventListener('click', function() {
+setupEye.addEventListener('click', function () {
   setupEye.style.fill = getRandomElement(EYES_COLOR);
 });
 
-setupFireball.addEventListener('click', function() {
+setupFireball.addEventListener('click', function () {
   setupFireball.style.background = getRandomElement(FIREBALL_COLOR);
 });
 
 // Хэндлеры  для  формы открытия и закрытие ПОПАПА
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopupHandler();
 });
 
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopupHandler();
   }
 });
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   closePopupHandler();
 });
 
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopupHandler();
   }
