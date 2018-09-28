@@ -81,7 +81,7 @@ var setupCoat = setupWizard.querySelector('.wizard-coat');
 var setupFireball = document.querySelector('.setup-fireball-wrap');
 
 // Хэндлеры  для  настроки цвета одежды, глаз мага и фаербола
-setupCoat.addEventListener('click', function() {
+setupCoat.addEventListener('click', function () {
   setupCoat.style.fill = getRandomElement(COAT_COLOR);
 });
 
