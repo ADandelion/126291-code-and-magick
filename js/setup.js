@@ -1,14 +1,14 @@
 'use strict';
-var wizards = [];
-
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAME = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топльницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 var FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
-
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
+var WIZARDS_AMOUNT = 4;
+
+var wizards = [];
 
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
@@ -21,17 +21,16 @@ var getRandomElement = function (elements) {
 };
 
 // Создаем массив из объектов.
-var getWizard = function (obj) {
-  for (var i = 0; i < 4; i++) {
+var createWizardsObject = function (createObject) {
+  for (var i = 0; i < WIZARDS_AMOUNT; i++) {
     wizards.push({
-      name: obj(WIZARD_NAMES) + ' ' + obj(WIZARD_SURNAME),
-      coatColor: obj(COAT_COLOR),
-      eyesColor: obj(EYES_COLOR)
+      name: createObject(WIZARD_NAMES) + ' ' + createObject(WIZARD_SURNAME),
+      coatColor: createObject(COAT_COLOR),
+      eyesColor: createObject(EYES_COLOR)
     });
   }
-  return wizards;
 };
-getWizard(getRandomElement);
+createWizardsObject(getRandomElement);
 
 // Добавляем цвет мантии, глаз, фамилию и имя для каждого мага
 var renderWizard = function (wizard) {
@@ -45,10 +44,10 @@ var renderWizard = function (wizard) {
 };
 
 // Добавляем похожих магов
-var getSimilarWizards = function (addWizards) {
+var getSimilarWizards = function (similars) {
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < addWizards.length; i++) {
-    fragment.appendChild(renderWizard(addWizards[i]));
+  for (var i = 0; i < similars.length; i++) {
+    fragment.appendChild(renderWizard(similars[i]));
   }
   similarListElement.appendChild(fragment);
 };
@@ -80,17 +79,21 @@ var setupEye = setupWizard.querySelector('.wizard-eyes');
 var setupCoat = setupWizard.querySelector('.wizard-coat');
 var setupFireball = document.querySelector('.setup-fireball-wrap');
 
+
 // Хэндлеры  для  настроки цвета одежды, глаз мага и фаербола
 setupCoat.addEventListener('click', function () {
   setupCoat.style.fill = getRandomElement(COAT_COLOR);
+  document.querySelector('input[name=coat-color]').value = getRandomElement(COAT_COLOR);
 });
 
 setupEye.addEventListener('click', function () {
   setupEye.style.fill = getRandomElement(EYES_COLOR);
+  document.querySelector('input[name=eyes-color]').value = getRandomElement(EYES_COLOR);
 });
 
 setupFireball.addEventListener('click', function () {
   setupFireball.style.background = getRandomElement(FIREBALL_COLOR);
+  document.querySelector('input[name=fireball-color]').value = getRandomElement(FIREBALL_COLOR);
 });
 
 // Хэндлеры  для  формы открытия и закрытие ПОПАПА
